@@ -145,7 +145,7 @@ What we just did and how go get works. The go get command takes the path to the 
 $GOPATH/src directory ready for you to use in import paths as part of your projects.
 
 ```
-cd $GOPATH/src/github
+cd $GOPATH/src/github.com
 ls
 ```
 
