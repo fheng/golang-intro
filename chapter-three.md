@@ -55,7 +55,7 @@ func main (){
 [playground](https://play.golang.org/p/BVXeyQTMNV)
 
 2) With the make keyword:
-The make built-in function allocates and initializes an object of type slice, map, or chan (only).
+The make built-in function allocates and initializes an object of type slice, map, or chan (only). 
 
 ```go 
 
@@ -64,7 +64,7 @@ package main
 import "fmt"
 
 func main (){
-    m := make(map[string]string) //again we are declaring the type of the key and the type of the value
+    m := make(map[string]string,3) //again we are declaring the type of the key and the type of the value
     m["Picard"] = "The next generation"
     m["Janeway"] = "Voyager"
     m["Kirk"] = "Star Trek"
@@ -72,7 +72,9 @@ func main (){
 }
 ```
 
-[playground](https://play.golang.org/p/Gz9OfA5rFR)
+[playground](https://play.golang.org/p/QdmVNGKxfH)
+
+The only reason to use the make key word is if you want to decide the size of the map before hand.
 
 Maps can hold any valid type or pointer.
 
@@ -231,6 +233,25 @@ func main (){
 }
 
 ```
+
+- Getting the length of a slice is the same as a map 
+
+``` go 
+package main 
+
+
+import "fmt"
+
+
+func main (){
+    captains := []string{"Picard","Janeway","Kirk"} //the type the slice will hold must be specified
+    length := len(captains)
+    fmt.Println(length)
+}
+
+```
+
+[playground](https://play.golang.org/p/fD7XVzrcGJ)
 
 - Iterate through a slice 
 
