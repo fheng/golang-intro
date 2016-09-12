@@ -7,6 +7,15 @@
 - Introduce how Go does json encoding
 - Show how to write a basic web server and test it.
 
+
+The examples can be run by adding the code to a main.go and running:
+
+```bash
+
+go run main.go 
+
+```
+
 ## Exported Names
 
 In Golang a packages' publicly accessible properties all begin with a capital letter. From within a package namespace you can
@@ -142,14 +151,6 @@ func main (){
 
 ``` 
 
-You can run this by using the handy ``` go run ``` command
-
-```go
-
-go run main.go 
-
-```
-
 In the above example we set the type, but if an initializer is present, the type can be omitted, the variable will take the type of the initializer (inferred typing).
 The below outlines the different ways you can use the var keyword:
 
@@ -266,7 +267,7 @@ func main (){
 ```
 
 We will go more into pointers and values in Golang in a future lesson. As with most languages, pointers are much cheaper and means anything recieving that
-pointer can change attributes of whatever is stored in the pointer's address. With a value your function will get a copy of the value. Meaning it can change
+pointer can change attributes of whatever is stored in the pointer's address. With a value your function will get a copy of the value so it can change
 the attributes of that value within the scope of the function but not outside of that scope.  
 
 
@@ -430,7 +431,7 @@ import (
 )
 
 func TestEcho(t *testing.T) {
-	server := httptest.NewServer(router())
+	server := httptest.NewServer(router()) //starts a real server on a free port
 	defer server.Close() //notice we use defer here to ensure our server is closed
 	res, err := http.NewRequest("POST", server.URL+"/api/echo", strings.NewReader(`{"message":"test"}`))
 	if err != nil {
@@ -462,5 +463,11 @@ go test -cover -v
 ```
 
 Notice we added the -cover flag, this will print the coverage stats for the package.
+
+Also it is worth noticing that we still haven't used any dependencies yet. We will eventually need them, but it good to show what you can achieve just with the stdlib.
+
+### Finally
+
+What would people like to build as part of this? Would working on a command line client that maybe does a login against RHMAP be good or would you prefer to learn more about building rest api servers?
 
 

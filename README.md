@@ -37,4 +37,3 @@ Notes and info about getting started with Go.
     - embedding (object composition)
     - Pointers recievers vs Value recievers
 - Interfaces  
-
