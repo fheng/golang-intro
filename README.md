@@ -25,12 +25,16 @@ Notes and info about getting started with Go.
 - Create your first REST API server
 - Write  an integration test for the web server
 
-## [Chapter Three Types and Collections]
-- Basic types 
-- More on structs and initialisation
-- Pointers 
-- Type conversion
-- Type assertion
+## [Chapter Three Collections]
 - Maps
-- Slices 
-- Adding some new endpoints to our api
+- Slices  
+- Creating a cli to interact with our server
+
+## [Chapter four]
+- Basic types
+- More on structs
+    - method recievers 
+    - embedding (object composition)
+    - Pointers recievers vs Value recievers
+- Interfaces  
+
