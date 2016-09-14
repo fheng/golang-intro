@@ -310,3 +310,77 @@ Inside append we are appending everything after the [2] index to everything befo
 ```[:1]``` before ```[2:]``` after the ```...``` is how Golang declares a variadic argument. So can be read as every value including the one at the [2] index.  
 
 [playground](https://play.golang.org/p/eArgeZieHw)
+
+## Where is the sugar? map, reduce, filter etc?
+
+Golang prides itself on being a simple , pragmatic language and tried to avoid sugar that its creators
+feel are unnecessary. So lets add some map reduce functions ourselves to see what is involved:
+
+
+```go 
+package main
+
+import "fmt"
+
+type MyList []string // a custom type can be a builtin type if you want it to be 
+
+func (ml MyList) Filter(f func(string) bool) []string {
+	na := []string{}
+	for _, v := range ml {
+		if add := f(v); add {
+			na = append(na, v)
+		}
+	}
+	return na
+}
+
+func (ml MyList) Reduce(f func(prev, current string, index int) string) []string {
+	na := []string{}
+	for i, v := range ml {
+		if i == 0 {
+			na = append(na, f("", v, i))
+		} else {
+			na = append(na, f(ml[i-1], v, i))
+		}
+	}
+	return na
+}
+
+func (ml MyList) Map(f func(val string) *string) []string {
+	na := []string{}
+	for _, v := range ml {
+		mVal := f(v)
+		if nil != mVal {
+			na = append(na, *mVal)
+		}
+	}
+	return na
+}
+
+//Lets try them out 
+func main() {
+	list := MyList{"test", "test2"}
+	fList := list.Filter(func(v string) bool {
+		if v == "test" {
+			return true
+		}
+		return false
+	})
+	fmt.Println(fList)
+
+	rList := list.Reduce(func(prev, current string, index int) string {
+		return fmt.Sprintf("%s%s:%d", prev, current, index)
+	})
+	fmt.Println(rList)
+
+	mList := list.Map(func(val string) *string {
+            val = val + " I WAS MAPPED"
+			return &val
+		return nil
+	})
+	fmt.Println(mList)
+}
+
+```
+
+[playground](https://play.golang.org/p/WfV_OFBa3o)
