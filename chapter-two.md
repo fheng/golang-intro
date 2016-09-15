@@ -433,10 +433,16 @@ import (
 func TestEcho(t *testing.T) {
 	server := httptest.NewServer(router()) //starts a real server on a free port
 	defer server.Close() //notice we use defer here to ensure our server is closed
-	res, err := http.NewRequest("POST", server.URL+"/api/echo", strings.NewReader(`{"message":"test"}`))
+	req, err := http.NewRequest("POST", server.URL+"/api/echo", strings.NewReader(`{"message":"test"}`))
 	if err != nil {
 		log.Fatal(err)
 	}
+	client := &http.Client{}
+	res, err := client.Do(req)  // make the call to our test server
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	echo, err := ioutil.ReadAll(res.Body)
 	res.Body.Close()
 	if err != nil {
