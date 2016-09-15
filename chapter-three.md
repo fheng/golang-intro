@@ -116,7 +116,7 @@ package main
 import "fmt" 
 
 func main (){
-    m := map[string]string{ //here we are declaring the key to be of type string and the value to be of type string
+    m := map[string]string{
         "Picard":"The next generation",
         "Janeway":"Voyager",
         "Kirk":"Star Trek",
@@ -142,7 +142,7 @@ package main
 import "fmt" 
 
 func main (){
-    m := map[string]string{ //here we are declaring the key to be of type string and the value to be of type string
+    m := map[string]string{ 
         "Picard":"The next generation",
         "Janeway":"Voyager",
         "Kirk":"Star Trek",
@@ -171,7 +171,7 @@ package main
 import "fmt" 
 
 func main (){
-    m := map[string]string{ //here we are declaring the key to be of type string and the value to be of type string
+    m := map[string]string{ 
         "Picard":"The next generation",
         "Janeway":"Voyager",
         "Kirk":"Star Trek",
