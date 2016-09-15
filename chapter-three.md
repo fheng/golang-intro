@@ -156,7 +156,7 @@ func main (){
 [playground](https://play.golang.org/p/PPGnySKyCv)
 
 *Range* 
-So we saw the range keyword above. A range clause provides a way to iterate over an array, slice, string, map, or channel (more on this in the future).
+So we saw the range keyword above. A range clause provides a way to iterate over an array, slice, string, map, or channel (more on channels in the future).
 It is only used in conjunction with a for loop. One thing to note is that when you use the range key word, for each
 loop, it copies the current key and value into the vars. This means that if you change the value in the loop it will not be reflected in the map or slice.
 
