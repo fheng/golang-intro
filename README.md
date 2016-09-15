@@ -31,9 +31,9 @@ Notes and info about getting started with Go.
 - Creating a cli to interact with our server
 
 ## [Chapter four]
-- Basic types
 - More on structs
     - method recievers 
     - embedding (object composition)
     - Pointers recievers vs Value recievers
 - Interfaces  
+- errors
