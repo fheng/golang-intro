@@ -22,7 +22,9 @@ Feel free to fork the repo. I am also happy to review any changes you make.
 ## Collections types 
 
 Golang has two main collection types.
+
 1) maps.
+
 2) slices.
 
 ### Maps 
