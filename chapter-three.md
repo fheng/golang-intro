@@ -322,7 +322,7 @@ import "fmt"
 func main (){
     captains := []string{"Picard","Black Beard", "Janeway","Kirk"}
     fmt.Println(captains[0]) //access the 0 index
-    fmt.Println(captains[1:3]) //return a slice containing elements from 1-3
+    fmt.Println(captains[1:3]) //return a slice containing elements from 1-3 but not including 3 so in this case ["Black Beard","Janeway"]
     fmt.Println(captains[:2]) //return a slice containing elements from 2 to the first element
     fmt.Println(captains[2:]) //return a slice containing elements from 2 till the end
 }
