@@ -240,7 +240,7 @@ package main
 import "fmt"
 
 func main (){
-    captains := make([]string,3) //notice the second arg here, this is the initial length
+    captains := make([]string,3) //notice the second arg here, this is the initial length and is required in the case of a slice
     captains[0] = "Picard"
     captains[1] = "Janeway"
     captains[2] = "Kirk" 
