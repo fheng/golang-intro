@@ -358,8 +358,7 @@ The ```...``` is how Golang declares a variadic argument. So can be read as ever
 
 ## Add some new endpoints to our api using slices and maps
 
-Ok lets add a new endpoint that returns a map and a new endpoint that returns a slice. I will leave it for homework to implement adding an api that stores new values in a map and another that
-stores new values in a slice. 
+Ok lets add a new endpoint that returns a map and a new endpoint that returns a slice.
 
 So lets add a new endpoint by adding the following to our existing main.go 
 
