@@ -348,7 +348,9 @@ So what is happening here. It looks a little strange.
 
 We are assigning the returned slice from append to the captains reciever.
 Inside append we are appending everything after the [2] index to everything before the [1] first index. So cutting out the value at [1] 
-```[:1]``` before ```[2:]``` after the ```...``` is how Golang declares a variadic argument. So can be read as every value including the one at the [2] index.  
+```[:1]``` before ```[2:]``` after. 
+
+The ```...``` is how Golang declares a variadic argument. So can be read as every value including the one at the [2] index.  
 
 [playground](https://play.golang.org/p/eArgeZieHw)
 
