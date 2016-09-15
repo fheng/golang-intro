@@ -25,9 +25,10 @@ Notes and info about getting started with Go.
 - Create your first REST API server
 - Write  an integration test for the web server
 
-## [Chapter Three Collections]
+## [Chapter Three Collections](./chapter-three.md)
 - Maps
 - Slices  
+- Adding some new endpoints
 - Creating a cli to interact with our server
 
 ## [Chapter four]
