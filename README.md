@@ -38,3 +38,14 @@ Notes and info about getting started with Go.
     - Pointers recievers vs Value recievers
 - Interfaces  
 - errors
+
+
+## [Chapter five]
+- Dependencies
+
+## [Chapter six]
+
+- Concurrency 
+    - chanels 
+    - locks
+    - sync package
