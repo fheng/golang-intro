@@ -323,7 +323,7 @@ So a guideline that is spoken about in Go is to "accept interfaces return struct
 Accepting interfaces allows us to easily unit test our work by providing alternative implementations
 
 One final word on interfaces for now. We haven't covered this in structs yet, but you can embed interfaces within each other allowing for something like 
-```extending``` 
+extending in Java  
 
 ```go 
 
