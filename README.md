@@ -34,13 +34,14 @@ Notes and info about getting started with Go.
 ## [Chapter four]
 - More on structs
     - method recievers 
-    - embedding (object composition)
     - Pointers recievers vs Value recievers
 - Interfaces  
 - errors
 
 
 ## [Chapter five]
+- A little more on structs 
+    - embedding (object composition)
 - Dependencies
 
 ## [Chapter six]
