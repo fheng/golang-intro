@@ -1,7 +1,7 @@
 ## Goals of this lesson
 
 - Structs form a large part of the Go type system. In this chapter we will go into more details about how you can use structs in Golang
-including adding behaviour, embedding structs to "inherit" / compose objects and the difference between value recievers and pointer recievers.
+including adding behaviour, and the difference between value recievers and pointer recievers.
 
 - Introduce interfaces and how they work and show how they can help with encapsulation and testing.
 
