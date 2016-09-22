@@ -31,7 +31,7 @@ Notes and info about getting started with Go.
 - Adding some new endpoints
 - Creating a cli to interact with our server
 
-## [Chapter four]
+## [Chapter four](./chapter-four.md)
 - More on structs
     - method recievers 
     - Pointers recievers vs Value recievers
