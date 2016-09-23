@@ -438,6 +438,8 @@ func main() {
 
 ```
 
+A little light reading from the Go team on errors [error are values](https://blog.golang.org/errors-are-values)
+
 ## A side project 
 I have created a repo:
 
