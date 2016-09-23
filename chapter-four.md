@@ -55,8 +55,8 @@ func (mt *MyType)SayAgain(){
 
 //example of custom builtin type 
 type MySlice []string 
-func (MySlice)Length()int{
-    return len(MySlice)
+func (ms MySlice)Length()int{
+    return len(ms)
 }
 
 func main (){
