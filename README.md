@@ -39,14 +39,18 @@ Notes and info about getting started with Go.
 - errors
 
 
-## [Chapter five]
+## [Chapter five](./chapter-five.md)
 - A little more on structs 
     - embedding (object composition)
 - Dependencies
+    - vendoring
+    - using a dependency manger (glide)
+- Teaser for Concurrency    
 
 ## [Chapter six]
 
 - Concurrency 
+    - go routines
     - chanels 
     - locks
     - sync package
