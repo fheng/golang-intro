@@ -176,3 +176,114 @@ With glide you would install a dependency as follows.
 ``` glide get <some package> ``` when you do this glide will look for release tags on the repo and prompt you for the version you want to use. Once this is done it will update the lock and glide file and add the dependency to your vendor directory (creating one if it doesn't exist).
 
 ## Touching on concurrency before next week.
+
+Go is a concurrent language and is built with concurrency in mind. At the core of its concurrency model are the concepts of goroutines and channels.
+
+## Goroutines 
+
+A goroutine is a light weight thread or "actor" that multiplexes ontop of a single "real" os thread. This model allows Golang to create many thousands of goroutines that span on a small number of actual os threads. 
+It is normally limited to the number of CPUs you have available.
+
+The scheduler built into Go manages all of these goroutines. If a goroutine is doing some file system io for example, the Go shcheduler recognises that the goroutine is blocked and so puts it to sleep until the filesystem comes back with a response, this allows a different goroutine to be given priority on the os thread. This makes Go very efficient at maximisng the capablities of your hardware and managing many concurrent activities. 
+
+For all network io Go uses the same underlying system libraries as node.js these are kqueue (Mac), epoll on linux. So go gives you the same evented IO that node provides but as each request is a separate goroutine, it means you can write synchronous code while taking advantage of asynchronous IO.
+
+How do you create one of these magical goroutines ?
+
+```go 
+package main
+
+import "fmt"
+
+func doSomethingConcurrent(){
+	fmt.Println("doing it")
+}
+
+func main(){
+	go doSomethingConcurrent() //notice the go key word
+}
+```
+[playground](https://play.golang.org/p/RnUGCy6l5M)
+
+So nothing happend. That is because the program exited before the go routine got to run. Let fix that.
+
+```go 
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func doSomethingConcurrent(){
+	fmt.Println("doing it")
+}
+
+func main(){
+	go doSomethingConcurrent() //notice the go key word
+	time.Sleep(1 * time.Second)
+}
+```
+[playground](https://play.golang.org/p/r3dB4aJNAj)
+
+## Channels 
+
+A go maxim or proverb is: 
+
+>Do not communicate by sharing memory; instead, share memory by communicating.
+
+
+So what is a channel? The [Go site says](https://tour.golang.org/concurrency/2) it is a typed conduit through which you can send and receive values. By default, sends and receives block until the other side is ready. This allows goroutines to synchronize without explicit locks or condition variables.
+Just as with maps and slices you have to use the make keyword with a channel. Here is an example of using channels: 
+
+```go 
+
+package main
+
+import "fmt"
+
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+}
+
+func main() {
+	s := []int{7, 2, 8, -9, 4, 0}
+	c := make(chan int)
+	go sum(s, c)
+	go sum(s, c)
+	x, y := <-c, <-c // receive from c
+
+	fmt.Println(x, y, x+y)
+}
+```
+[playground](https://play.golang.org/p/0APpOZLNIC)
+
+Example of the channel blocking the current goroutine:
+
+```go 
+
+package main
+
+import "fmt"
+import "time"
+
+func send(s int, c chan int) {
+	time.Sleep(2 *time.Second)
+	c <- s // send sum to c
+}
+
+func main() {
+	c := make(chan int)
+	go send(10, c)
+	x:= <-c
+	fmt.Println(x)
+}
+
+```
+[playground](https://play.golang.org/p/uNYJ9v9N9p)
+
+We will learn a lot more about concurrency in the next lesson.
