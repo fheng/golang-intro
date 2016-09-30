@@ -149,12 +149,14 @@ So far we haven't needed to use a single dependency. But it is naive to think yo
 Although much of the tooling around Go is excellent. The Go team took what is considered a fairly crude approach to dependency management. We have to remember that initally Go was designed to suit Google's use case. It was not really a concern of theirs to think of lots of other use cases.
 Google is well known to have an immense mono repo so ``` go get ``` works well for them. This is not the case with everyone else. By default go get pulls the master branch of the repo you point it at. When you do a go get it pulls in the required dependencies, this means there are issues with
 reproducibility. 
-As of go 1.5 they looked to address some of the issues by introducing the vendor directory. If a directory called vendor exists in the current package it will first attempt to resolve dependencies their. Thing node_modules, except you are encouraged to check in your dependencies.
+As of go 1.5 they looked to address some of the issues by introducing the vendor directory. If a directory called vendor exists in the current package it will first attempt to resolve dependencies their. Think node_modules, except you are encouraged to check in your dependencies.
 As go is compiled to machine code, there is no issues with checking in dependencies, unlike node modules that might have native dependencies.
 Once vendoring was in place several project sprang up to manage these dependencies and updating these dependencies. There are several but they all work in similar ways:
 
-Create a file that registers the dependencies and their current commit hash. When you update a dependency you use the tool and it will update the commit. This makes dependency management much nicer. There is still a way to go and 
-due to the popularity of Go, there is currently a community panel set up to better address dependency.
+Create a file that registers the dependencies and their current commit hash. When getting a new dependecy check for release tags. When you update a dependency you use the tool and it will update the commit. This makes dependency management much nicer. There is still a way to go and 
+due to the popularity of Go, there is currently a community panel set up to better address dependencies and package management.
+
+So what's out there?
 
 I like a tool called glide:
 [glide tool](https://github.com/Masterminds/glide)
