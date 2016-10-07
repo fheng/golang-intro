@@ -52,5 +52,6 @@ Notes and info about getting started with Go.
 - Concurrency 
     - go routines
     - chanels 
+    - select
     - locks
     - sync package
