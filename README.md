@@ -47,11 +47,11 @@ Notes and info about getting started with Go.
     - using a dependency manger (glide)
 - Teaser for Concurrency    
 
-## [Chapter six]
+## [Chapter six](./chapter-six.md)
 
 - Concurrency 
     - go routines
     - chanels 
     - select
     - locks
-    - sync package
+    - wait groups
