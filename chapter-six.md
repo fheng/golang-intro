@@ -6,8 +6,8 @@
 - Discuss other useful concurrency tools such as ``` sync.WaitGroup ```
 
 ## Goroutines
-So just to recap, A goroutine is a light weight thread or "actor" that multiplexes ontop of a single "real" os thread. 
-This model allows Go to create many thousands of goroutines that span on a small number of actual os threads.
+So just to recap, A goroutine is a light weight thread that multiplexes ontop of a single "real" os thread. 
+This model allows Go to create many thousands of goroutines that span only a small number of actual os threads.
 
 The ```go ``` keyword is used to create a goroutine.
 
@@ -20,12 +20,10 @@ func main(){
 }
 
 ```
-So our func will execute within another goroutine. 
-
-
 ## Channels
 
-If you want to communicate something from one executing goroutine to another, you should use a channel. 
+If you want to communicate something from one executing goroutine to another, you should use a channel. They allow diffrent routines 
+to synchronise at a given point.  
 
 ### Creating a channel
 To make a new channel you use the builtin make command just like a map
@@ -58,7 +56,9 @@ close(myStrChan)
 
 [playground](https://play.golang.org/p/FFDs1xDDWT)
 
-### Using channels 
+### Using channels
+
+Below is an example of using channels in go.
 
 ```go 
 package main 
@@ -81,7 +81,7 @@ func main(){
 ```
 [playground](https://play.golang.org/p/_VMlxfl59q)
 
-You can range over channels and recieve as many values as are sent until the channel is closed.
+You can range over channels and keep recieving values for as long as they are sent or until the channel is closed.
 
 ```go 
 package main 
@@ -113,7 +113,7 @@ func main(){
 
 ## Deadlock!!
 
-In all concurrent languages you have the concept of a Deadlock. This essentially means there is no way for the involved actors / goroutines to proceed. This causes the program to panic and exit.
+In all concurrent languages you have the concept of a Deadlock. This essentially means there is no way for the involved goroutines to proceed. This causes the program to panic and exit.
 
 ```go
 
@@ -144,7 +144,7 @@ func main(){
 ```
 [playground](https://play.golang.org/p/5U1yInSRWg)
 
-To help detect this issues you need to ensure you write good tests. There are also some builtin helpers. ```go vet``` will catch some things.
+To help detect this issues you need to ensure you write good tests. There are also some builtin helpers. ```go vet``` will catch some things like passing a mutex by value plus many others.
 Also running ```go test -race``` will turn on the race detector when running your tests.
 [more on races and detection](https://golang.org/doc/articles/race_detector.html)
 
@@ -241,13 +241,15 @@ We can see this working here:
 [playground](https://play.golang.org/p/NlGYWoxtkj)
 
 
+Another option would be to start up more go routines that are also reading from the channel. Or you could start a goroutine in the worker every time it recieved some work.  
+
 ## Select
 
 What if you want to recieve messages from more than one channel at a time? To do this we use the select statement.
 
-From the go welcom tour. 
+From the go welcome tour. 
 
-> The select statement lets a goroutine wait on multiple communication operations. A select blocks until one of <it></it>s cases can run, then it executes that case. It chooses one at random if multiple are ready.
+> The select statement lets a goroutine wait on multiple communication operations. A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready.
 
 ```go 
 package main
@@ -284,6 +286,40 @@ func main() {
 So in our above example we are using a for loop to constantly check the select statement. Once any of this evaluate to true the code will execute that is associated with the corrosponding case. 
 
 Another example using a time out.
+
+From the gobyexample website [example](https://gobyexample.com/timeouts)
+
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+	// For our example, suppose we're executing an external
+	// call that returns its result on a channel `c1`
+	// after 2s.
+	c1 := make(chan string, 1)
+	go func() {
+		time.Sleep(time.Second * 2)
+		c1 <- "result 1"
+	}()
+
+	// Here's the `select` implementing a timeout.
+	// `res := <-c1` awaits the result and `<-Time.After`
+	// awaits a value to be sent after the timeout of
+	// 1s. Since `select` proceeds with the first
+	// receive that's ready, we'll take the timeout case
+	// if the operation takes more than the allowed 1s.
+	select {
+	case res := <-c1:
+		fmt.Println(res)
+	case <-time.After(time.Second * 1):
+		fmt.Println("timeout 1")
+	}
+}
+
+[playground](https://play.golang.org/p/oNmXphDMm5)
 
 ## Locks and WaitGroups
 
